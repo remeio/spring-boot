@@ -39,6 +39,7 @@ import org.springframework.context.ResourceLoaderAware;
  * @author Phillip Webb
  * @since 1.5.0
  */
+// 自动配置导入过滤器
 @FunctionalInterface
 public interface AutoConfigurationImportFilter {
 

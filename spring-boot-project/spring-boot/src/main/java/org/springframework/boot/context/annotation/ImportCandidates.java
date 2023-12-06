@@ -40,8 +40,9 @@ import org.springframework.util.Assert;
  * @author Scott Frederick
  * @since 2.7.0
  */
+// 导入候选者
 public final class ImportCandidates implements Iterable<String> {
-
+	// META-INF 下的路径
 	private static final String LOCATION = "META-INF/spring/%s.imports";
 
 	private static final String COMMENT_START = "#";
@@ -85,6 +86,7 @@ public final class ImportCandidates implements Iterable<String> {
 		List<String> importCandidates = new ArrayList<>();
 		while (urls.hasMoreElements()) {
 			URL url = urls.nextElement();
+			// 从资源中获取候选配置类
 			importCandidates.addAll(readCandidateConfigurations(url));
 		}
 		return new ImportCandidates(importCandidates);
@@ -107,6 +109,7 @@ public final class ImportCandidates implements Iterable<String> {
 	}
 
 	private static List<String> readCandidateConfigurations(URL url) {
+		// 从资源中获取候选配置类
 		try (BufferedReader reader = new BufferedReader(
 				new InputStreamReader(new UrlResource(url).getInputStream(), StandardCharsets.UTF_8))) {
 			List<String> candidates = new ArrayList<>();

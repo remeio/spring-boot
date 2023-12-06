@@ -57,6 +57,7 @@ import org.springframework.core.annotation.AliasFor;
 @Configuration(proxyBeanMethods = false)
 @AutoConfigureBefore
 @AutoConfigureAfter
+// 自动配置注解，组合注解
 public @interface AutoConfiguration {
 
 	/**

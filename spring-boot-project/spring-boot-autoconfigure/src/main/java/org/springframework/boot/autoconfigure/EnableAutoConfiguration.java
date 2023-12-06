@@ -80,6 +80,7 @@ import org.springframework.context.annotation.Import;
 @Inherited
 @AutoConfigurationPackage
 @Import(AutoConfigurationImportSelector.class)
+// 启用自动配置注解
 public @interface EnableAutoConfiguration {
 
 	/**

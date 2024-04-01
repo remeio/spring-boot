@@ -35,10 +35,12 @@ import org.springframework.util.ReflectionUtils;
  * @author Andy Wilkinson
  * @author Chris Bono
  */
+// Spring 应用运行监听器
 class SpringApplicationRunListeners {
 
 	private final Log log;
 
+	// 组合模式，内部封装多个 Spring 应用运行监听器
 	private final List<SpringApplicationRunListener> listeners;
 
 	private final ApplicationStartup applicationStartup;
@@ -115,6 +117,7 @@ class SpringApplicationRunListeners {
 	private void doWithListeners(String stepName, Consumer<SpringApplicationRunListener> listenerAction,
 			Consumer<StartupStep> stepAction) {
 		StartupStep step = this.applicationStartup.start(stepName);
+		// 依次调用 Spring 应用运行监听器的消费方法
 		this.listeners.forEach(listenerAction);
 		if (stepAction != null) {
 			stepAction.accept(step);

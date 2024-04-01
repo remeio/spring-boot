@@ -51,6 +51,7 @@ import org.springframework.util.ErrorHandler;
  * @author Brian Clozel
  * @author Chris Bono
  */
+// 事件发布运行监听器
 class EventPublishingRunListener implements SpringApplicationRunListener, Ordered {
 
 	private final SpringApplication application;
@@ -132,7 +133,9 @@ class EventPublishingRunListener implements SpringApplicationRunListener, Ordere
 	}
 
 	private void multicastInitialEvent(ApplicationEvent event) {
+		// 刷新应用监听器
 		refreshApplicationListeners();
+		// 发布事件
 		this.initialMulticaster.multicastEvent(event);
 	}
 

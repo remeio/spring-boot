@@ -36,6 +36,7 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
  * @author Chris Bono
  * @since 1.0.0
  */
+// Spring 应用运行监听器
 public interface SpringApplicationRunListener {
 
 	/**
@@ -43,6 +44,7 @@ public interface SpringApplicationRunListener {
 	 * early initialization.
 	 * @param bootstrapContext the bootstrap context
 	 */
+	// 应用开始启动
 	default void starting(ConfigurableBootstrapContext bootstrapContext) {
 	}
 
@@ -52,6 +54,7 @@ public interface SpringApplicationRunListener {
 	 * @param bootstrapContext the bootstrap context
 	 * @param environment the environment
 	 */
+	// 环境已准备
 	default void environmentPrepared(ConfigurableBootstrapContext bootstrapContext,
 			ConfigurableEnvironment environment) {
 	}
@@ -61,6 +64,7 @@ public interface SpringApplicationRunListener {
 	 * before sources have been loaded.
 	 * @param context the application context
 	 */
+	// 应用上下文已准备
 	default void contextPrepared(ConfigurableApplicationContext context) {
 	}
 
@@ -69,6 +73,7 @@ public interface SpringApplicationRunListener {
 	 * refreshed.
 	 * @param context the application context
 	 */
+	// 应用上下文已加载
 	default void contextLoaded(ConfigurableApplicationContext context) {
 	}
 
@@ -80,6 +85,7 @@ public interface SpringApplicationRunListener {
 	 * @param timeTaken the time taken to start the application or {@code null} if unknown
 	 * @since 2.6.0
 	 */
+	// 应用已启动
 	default void started(ConfigurableApplicationContext context, Duration timeTaken) {
 	}
 
@@ -92,6 +98,7 @@ public interface SpringApplicationRunListener {
 	 * unknown
 	 * @since 2.6.0
 	 */
+	// 应用已就绪
 	default void ready(ConfigurableApplicationContext context, Duration timeTaken) {
 	}
 
@@ -102,6 +109,7 @@ public interface SpringApplicationRunListener {
 	 * @param exception the failure
 	 * @since 2.0.0
 	 */
+	// 应用启动失败
 	default void failed(ConfigurableApplicationContext context, Throwable exception) {
 	}
 

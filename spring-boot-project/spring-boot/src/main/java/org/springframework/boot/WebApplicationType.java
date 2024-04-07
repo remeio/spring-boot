@@ -28,6 +28,7 @@ import org.springframework.util.ClassUtils;
  * @author Brian Clozel
  * @since 2.0.0
  */
+// Web 应用类型枚举
 public enum WebApplicationType {
 
 	/**
@@ -58,15 +59,18 @@ public enum WebApplicationType {
 	private static final String JERSEY_INDICATOR_CLASS = "org.glassfish.jersey.servlet.ServletContainer";
 
 	static WebApplicationType deduceFromClasspath() {
+		// 有 webflux 所需类且没有 webmvc 和 jersey 所需类，对应 reactive
 		if (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, null) && !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, null)
 				&& !ClassUtils.isPresent(JERSEY_INDICATOR_CLASS, null)) {
 			return WebApplicationType.REACTIVE;
 		}
+		// servlet 所需类非全都有，对应 none
 		for (String className : SERVLET_INDICATOR_CLASSES) {
 			if (!ClassUtils.isPresent(className, null)) {
 				return WebApplicationType.NONE;
 			}
 		}
+		// servlet 所需类全都有，对应 servlet
 		return WebApplicationType.SERVLET;
 	}
 
